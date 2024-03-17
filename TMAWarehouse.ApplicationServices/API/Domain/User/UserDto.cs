@@ -1,9 +1,8 @@
-﻿namespace TMAWarehouse.ApplicationServices.API.Domain.User
+﻿namespace TMAWarehouse.ApplicationServices.API.Domain.User;
+
+public class UserDto
 {
-    internal class UserDto
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; }
-    }
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string Surname { get; set; }
 }
