@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34316.72
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMAWarehouse", "TMAWarehouse\TMAWarehouse.csproj", "{AEE96F58-0288-4EE2-AE3E-EE91F89C82BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TMAWarehouse", "TMAWarehouse\TMAWarehouse.csproj", "{AEE96F58-0288-4EE2-AE3E-EE91F89C82BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMAWarehouse.DataAccess", "TMAWarehouse.DataAccess\TMAWarehouse.DataAccess.csproj", "{B0E59EDD-44F7-4840-A829-74260721625A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TMAWarehouse.DataAccess", "TMAWarehouse.DataAccess\TMAWarehouse.DataAccess.csproj", "{B0E59EDD-44F7-4840-A829-74260721625A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMAWarehouse.ApplicationServices", "TMAWarehouse.ApplicationServices\TMAWarehouse.ApplicationServices.csproj", "{1A645CF8-CD85-49B8-A2BE-FB7D74B15670}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{B0E59EDD-44F7-4840-A829-74260721625A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0E59EDD-44F7-4840-A829-74260721625A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0E59EDD-44F7-4840-A829-74260721625A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A645CF8-CD85-49B8-A2BE-FB7D74B15670}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A645CF8-CD85-49B8-A2BE-FB7D74B15670}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A645CF8-CD85-49B8-A2BE-FB7D74B15670}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A645CF8-CD85-49B8-A2BE-FB7D74B15670}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
