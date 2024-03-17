@@ -4,10 +4,10 @@ namespace TMAWarehouse.DataAccess.Entites;
 
 public class Request : BaseEntity
 {
-    public Employee Employee { get; set; }
+    public User User { get; set; }
 
-    [ForeignKey(nameof(Employee.Name))]
-    public string EmployeeName { get; set; }
+    [ForeignKey(nameof(User.Name))]
+    public string UserName { get; set; }
 
     public Item Item { get; set; }    
 

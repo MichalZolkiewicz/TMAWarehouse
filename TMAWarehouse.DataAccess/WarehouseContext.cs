@@ -10,12 +10,10 @@ public class WarehouseContext : DbContext
     {
         
     }
-
-    public DbSet<Coordinator> Coordinators { get; set; }
-
-    public DbSet<Employee> Employees { get; set; }
-
+    
     public DbSet<Item> Items { get; set; }
 
     public DbSet<Request> Requests { get; set; }
+
+    public DbSet<User> Users { get; set; }
 }
