@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace TMAWarehouse.DataAccess.Entites;
 
@@ -13,6 +14,7 @@ public class Item : BaseEntity
     public string ItemGroup { get; set; }
     
     [Required]
+    [NotNull]
     public string UnitOfMeasurement { get; set; }
     
     [Required]
@@ -28,11 +30,11 @@ public class Item : BaseEntity
 
     [Column(TypeName = "VARCHAR")]
     [StringLength(100)]
-    public string StorageLocation { get; set; }
+    public string? StorageLocation { get; set; }
 
     [Column(TypeName = "VARCHAR")]
     [StringLength(400)]
-    public string ContactPerson { get; set; }
+    public string? ContactPerson { get; set; }
 
     public List<Request> Requests { get; set; }
 }
