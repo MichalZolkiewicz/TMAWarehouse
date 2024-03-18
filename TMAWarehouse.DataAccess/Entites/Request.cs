@@ -9,7 +9,7 @@ public class Request : BaseEntity
     [ForeignKey(nameof(User.Name))]
     public string UserName { get; set; }
 
-    public Item Item { get; set; }    
+    public List<Item> Items { get; set; }    
 
     public int ItemId { get; set; }
 
@@ -20,4 +20,6 @@ public class Request : BaseEntity
     public double NetPrice { get; set; }
 
     public string Comment { get; set; }
+
+
 }
