@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using TMAWarehouse.DataAccess.CQRS.Commands;
 
-namespace TMAWarehouse.DataAccess.CQRS
+namespace TMAWarehouse.DataAccess.CQRS;
+
+public class CommandExecutor : ICommandExecutor
 {
-    internal class CommandExecutor
+    private readonly WarehouseContext _context;
+
+    public CommandExecutor(WarehouseContext context)
     {
+        _context = context;
+    }
+
+    public Task<TResult> Execute<TParameters, TResult>(CommandBase<TParameters, TResult> command)
+    {
+        return command.Execute(_context);
     }
 }

@@ -14,6 +14,8 @@ builder.Services.AddControllers();
 builder.Services.AddMediatR(typeof(ResponseBase<>).Assembly);
 builder.Services.AddAutoMapper(typeof(ItemsProfile).Assembly);
 builder.Services.AddTransient<IQueryExecutor, QueryExecutor>();
+builder.Services.AddTransient<ICommandExecutor, CommandExecutor>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using TMAWarehouse.DataAccess.CQRS.Commands;
 
-namespace TMAWarehouse.DataAccess.CQRS
+namespace TMAWarehouse.DataAccess.CQRS;
+
+public interface ICommandExecutor
 {
-    internal interface ICommandExecutor
-    {
-    }
+    Task<TResult> Execute<TParameters, TResult>(CommandBase<TParameters, TResult> command);
 }
