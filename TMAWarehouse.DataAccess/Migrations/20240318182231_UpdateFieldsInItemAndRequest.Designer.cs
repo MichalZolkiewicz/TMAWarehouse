@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TMAWarehouse.DataAccess;
 
@@ -10,9 +11,11 @@ using TMAWarehouse.DataAccess;
 namespace TMAWarehouse.DataAccess.Migrations
 {
     [DbContext(typeof(WarehouseContext))]
-    partial class WarehouseContextModelSnapshot : ModelSnapshot
+    [Migration("20240318182231_UpdateFieldsInItemAndRequest")]
+    partial class UpdateFieldsInItemAndRequest
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -20,6 +23,21 @@ namespace TMAWarehouse.DataAccess.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("ItemRequest", b =>
+                {
+                    b.Property<int>("ItemsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RequestsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ItemsId", "RequestsId");
+
+                    b.HasIndex("RequestsId");
+
+                    b.ToTable("ItemRequest");
+                });
 
             modelBuilder.Entity("TMAWarehouse.DataAccess.Entites.Item", b =>
                 {
@@ -86,10 +104,6 @@ namespace TMAWarehouse.DataAccess.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("UnitOfMeasurement")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -102,8 +116,6 @@ namespace TMAWarehouse.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ItemId");
 
                     b.HasIndex("UserId");
 
@@ -146,28 +158,30 @@ namespace TMAWarehouse.DataAccess.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("TMAWarehouse.DataAccess.Entites.Request", b =>
+            modelBuilder.Entity("ItemRequest", b =>
                 {
-                    b.HasOne("TMAWarehouse.DataAccess.Entites.Item", "Item")
-                        .WithMany("Requests")
-                        .HasForeignKey("ItemId")
+                    b.HasOne("TMAWarehouse.DataAccess.Entites.Item", null)
+                        .WithMany()
+                        .HasForeignKey("ItemsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("TMAWarehouse.DataAccess.Entites.Request", null)
+                        .WithMany()
+                        .HasForeignKey("RequestsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TMAWarehouse.DataAccess.Entites.Request", b =>
+                {
                     b.HasOne("TMAWarehouse.DataAccess.Entites.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Item");
-
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("TMAWarehouse.DataAccess.Entites.Item", b =>
-                {
-                    b.Navigation("Requests");
                 });
 #pragma warning restore 612, 618
         }
