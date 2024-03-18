@@ -12,7 +12,7 @@ namespace TMAWarehouse.DataAccess.CQRS.Commands
             if (request != null && item != null && item.Quantity > this.Parameter.Quantity) 
             {
                 request.Status = this.Parameter.Status;
-                item.Quantity = item.Quantity - this.Parameter.Quantity;
+                item.Quantity = item.Quantity - request.Quantity;
             }
             
             await context.SaveChangesAsync();
