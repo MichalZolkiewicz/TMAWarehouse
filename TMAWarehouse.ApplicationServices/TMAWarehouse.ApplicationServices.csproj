@@ -18,11 +18,4 @@
     <ProjectReference Include="..\TMAWarehouse.DataAccess\TMAWarehouse.DataAccess.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="API\Domain\User\DeleteUser\" />
-    <Folder Include="API\Domain\User\GetAllUsers\" />
-    <Folder Include="API\Domain\User\GetUserById\" />
-    <Folder Include="API\Domain\User\UpdateUser\" />
-  </ItemGroup>
-
 </Project>

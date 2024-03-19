@@ -6,4 +6,5 @@ public class UpdateItemQuantityRequest : IRequest<UpdateItemQuantityResponse>
 {
     public int Id { get; set; }
     public int ItemQuantity { get; set; }
+    public int CoordinatorId { get; set; }
 }

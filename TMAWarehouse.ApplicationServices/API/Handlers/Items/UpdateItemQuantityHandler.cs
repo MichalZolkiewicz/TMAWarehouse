@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
 using MediatR;
-using Microsoft.EntityFrameworkCore.Migrations;
+using TMAWarehouse.ApplicationServices.API.Domain.Error;
 using TMAWarehouse.ApplicationServices.API.Domain.Item;
 using TMAWarehouse.ApplicationServices.API.Domain.Item.UpdateItemQuantity;
 using TMAWarehouse.DataAccess.CQRS;
 using TMAWarehouse.DataAccess.CQRS.Commands;
+using TMAWarehouse.DataAccess.CQRS.Queries;
 using TMAWarehouse.DataAccess.Entites;
+using TMAWarehouse.DataAccess.Entites.Enums;
 
 namespace TMAWarehouse.ApplicationServices.API.Handlers.Items;
 
@@ -13,20 +15,33 @@ public class UpdateItemQuantityHandler : IRequestHandler<UpdateItemQuantityReque
 {
     private readonly IMapper _mapper;
     private readonly ICommandExecutor _commandExecutor;
+    private readonly IQueryExecutor _queryExecutor;
 
-    public UpdateItemQuantityHandler(IMapper mapper, ICommandExecutor commandExecutor)
+    public UpdateItemQuantityHandler(IMapper mapper, ICommandExecutor commandExecutor, IQueryExecutor queryExecutor)
     {
         _mapper = mapper;
         _commandExecutor = commandExecutor;
+        _queryExecutor = queryExecutor;
     }
     public async Task<UpdateItemQuantityResponse> Handle(UpdateItemQuantityRequest request, CancellationToken cancellationToken)
     {
-        var candidate = _mapper.Map<Item>(request);
-        var command = new UpdateItemQuantityCommand() { Parameter = candidate };
-        var updateCandidate = await _commandExecutor.Execute(command);
+        var coordinatorQuery = new GetUserByIdQuery { Id = request.CoordinatorId };
+        var coordinator = await _queryExecutor.Execute(coordinatorQuery);
+
+        if(coordinator.PositionType != PositionType.Coordinator)
+        {
+            return new UpdateItemQuantityResponse()
+            {
+                Error = new ErrorModel(ErrorType.Unauthorized)
+            };
+        }
+
+        var item = _mapper.Map<Item>(request);
+        var command = new UpdateItemQuantityCommand() { Parameter = item };
+        var updateItem = await _commandExecutor.Execute(command);
         return new UpdateItemQuantityResponse
         {
-            Data = _mapper.Map<ItemDto>(updateCandidate)
+            Data = _mapper.Map<ItemDto>(updateItem)
         };
     }
 }

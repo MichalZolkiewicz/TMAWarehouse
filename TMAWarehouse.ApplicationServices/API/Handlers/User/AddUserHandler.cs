@@ -1,9 +1,12 @@
 ﻿using AutoMapper;
 using MediatR;
+using TMAWarehouse.ApplicationServices.API.Domain.Error;
 using TMAWarehouse.ApplicationServices.API.Domain.User;
 using TMAWarehouse.ApplicationServices.API.Domain.User.AddUser;
 using TMAWarehouse.DataAccess.CQRS;
 using TMAWarehouse.DataAccess.CQRS.Commands;
+using TMAWarehouse.DataAccess.CQRS.Queries;
+using TMAWarehouse.DataAccess.Entites.Enums;
 
 namespace TMAWarehouse.ApplicationServices.API.Handlers.User;
 
@@ -11,11 +14,13 @@ public class AddUserHandler : IRequestHandler<AddUserRequest, AddUserResponse>
 {
     private readonly IMapper _mapper;
     private readonly ICommandExecutor _commandExecutor;
+    private readonly IQueryExecutor _queryExecutor;
 
-    public AddUserHandler(IMapper mapper, ICommandExecutor commandExecutor)
+    public AddUserHandler(IMapper mapper, ICommandExecutor commandExecutor, IQueryExecutor queryExecutor)
     {
         _mapper = mapper;
         _commandExecutor = commandExecutor;
+        _queryExecutor = queryExecutor;
     }
 
     public async Task<AddUserResponse> Handle(AddUserRequest request, CancellationToken cancellationToken)

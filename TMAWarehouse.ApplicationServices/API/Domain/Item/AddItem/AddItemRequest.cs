@@ -12,4 +12,6 @@ public class AddItemRequest : IRequest<AddItemResponse>
     public string Status { get; set; }
     public string StorageLocation { get; set; }
     public string ContactPerson { get; set; }
+
+    public int CoordinatorId {  get; set; }     
 }
