@@ -1,6 +1,8 @@
-﻿namespace TMAWarehouse.ApplicationServices.API.Domain;
+﻿using TMAWarehouse.ApplicationServices.API.Domain.Error;
 
-public class ResponseBase<T>
+namespace TMAWarehouse.ApplicationServices.API.Domain;
+
+public class ResponseBase<T> : ErrorResponseBase
 {
     public T Data { get; set; }
 }
