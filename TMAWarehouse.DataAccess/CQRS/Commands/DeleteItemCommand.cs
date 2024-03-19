@@ -11,6 +11,6 @@ public class DeleteItemCommand : CommandBase<Item, Item>
         var item = await context.Items.FirstOrDefaultAsync(x => x.Id == Id);
         context.Items.Remove(item);
         await context.SaveChangesAsync();
-        return this.Parameter;
+        return item;
     }
 }
