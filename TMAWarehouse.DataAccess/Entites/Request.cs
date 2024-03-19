@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace TMAWarehouse.DataAccess.Entites;
+﻿namespace TMAWarehouse.DataAccess.Entites;
 
 public class Request : BaseEntity
 {

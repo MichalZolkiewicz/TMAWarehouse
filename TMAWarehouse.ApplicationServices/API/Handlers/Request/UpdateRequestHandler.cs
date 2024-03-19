@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Azure;
 using MediatR;
 using TMAWarehouse.ApplicationServices.API.Domain.Error;
 using TMAWarehouse.ApplicationServices.API.Domain.Request;

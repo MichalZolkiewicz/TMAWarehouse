@@ -1,6 +1,5 @@
 using FluentValidation.AspNetCore;
 using MediatR;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TMAWarehouse.ApplicationServices.API.Domain;
 using TMAWarehouse.ApplicationServices.API.Mappings;

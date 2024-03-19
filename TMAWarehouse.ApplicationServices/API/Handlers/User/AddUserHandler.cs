@@ -1,12 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
-using TMAWarehouse.ApplicationServices.API.Domain.Error;
 using TMAWarehouse.ApplicationServices.API.Domain.User;
 using TMAWarehouse.ApplicationServices.API.Domain.User.AddUser;
 using TMAWarehouse.DataAccess.CQRS;
 using TMAWarehouse.DataAccess.CQRS.Commands;
-using TMAWarehouse.DataAccess.CQRS.Queries;
-using TMAWarehouse.DataAccess.Entites.Enums;
 
 namespace TMAWarehouse.ApplicationServices.API.Handlers.User;
 

@@ -3,7 +3,6 @@ using MediatR;
 using TMAWarehouse.ApplicationServices.API.Domain.Error;
 using TMAWarehouse.ApplicationServices.API.Domain.Item;
 using TMAWarehouse.ApplicationServices.API.Domain.Item.AddItem;
-using TMAWarehouse.ApplicationServices.API.Domain.Item.DeleteItem;
 using TMAWarehouse.DataAccess.CQRS;
 using TMAWarehouse.DataAccess.CQRS.Commands;
 using TMAWarehouse.DataAccess.CQRS.Queries;
