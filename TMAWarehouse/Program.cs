@@ -1,7 +1,12 @@
+using FluentValidation.AspNetCore;
 using MediatR;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TMAWarehouse.ApplicationServices.API.Domain;
 using TMAWarehouse.ApplicationServices.API.Mappings;
+using TMAWarehouse.ApplicationServices.API.Validator;
+using TMAWarehouse.Authentication;
 using TMAWarehouse.DataAccess;
 using TMAWarehouse.DataAccess.CQRS;
 
@@ -15,6 +20,17 @@ builder.Services.AddMediatR(typeof(ResponseBase<>).Assembly);
 builder.Services.AddAutoMapper(typeof(ItemsProfile).Assembly);
 builder.Services.AddTransient<IQueryExecutor, QueryExecutor>();
 builder.Services.AddTransient<ICommandExecutor, CommandExecutor>();
+
+builder.Services.AddMvcCore().
+    AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AddUserRequestValidator>());
+
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.SuppressModelStateInvalidFilter = true;
+});
+builder.Services.AddAuthentication("BasicAuthentication")
+    .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
