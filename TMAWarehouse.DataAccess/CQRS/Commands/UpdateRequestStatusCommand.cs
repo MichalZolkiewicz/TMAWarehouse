@@ -11,8 +11,19 @@ namespace TMAWarehouse.DataAccess.CQRS.Commands
             var item = await context.Items.FirstOrDefaultAsync(x => x.Id == request.ItemId);
             if (request != null && item != null && item.Quantity > this.Parameter.Quantity) 
             {
-                request.Status = this.Parameter.Status;
-                item.Quantity = item.Quantity - request.Quantity;
+                switch (this.Parameter.Status)
+                {
+                    case "confirmed":
+                        request.Status = this.Parameter.Status;
+                        item.Quantity = item.Quantity - request.Quantity;
+                        break;
+                    case "rejected":
+                        request.Status = this.Parameter.Status;
+                        break;
+                    default:
+                        throw new Exception("Wrong status!");
+                }
+                
             }
             
             await context.SaveChangesAsync();
