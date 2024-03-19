@@ -19,6 +19,6 @@ public class UserProfile : Profile
         this.CreateMap<User, UserDto>()
             .ForMember(x => x.Id, y => y.MapFrom(z => z.Id))
             .ForMember(x => x.Name, y => y.MapFrom(z => z.Name))
-            .ForMember(x => x.Surname, y => y.MapFrom(z => z.Name));
+            .ForMember(x => x.Surname, y => y.MapFrom(z => z.Surname));
     }
 }
