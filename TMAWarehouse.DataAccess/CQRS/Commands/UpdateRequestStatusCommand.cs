@@ -8,7 +8,7 @@ namespace TMAWarehouse.DataAccess.CQRS.Commands
         public override async Task<Request> Execute(WarehouseContext context)
         {
             var request = await context.Requests.FirstOrDefaultAsync(x => x.Id == this.Parameter.Id);
-            var item = await context.Items.FirstOrDefaultAsync(x => x.Id == this.Parameter.ItemId);
+            var item = await context.Items.FirstOrDefaultAsync(x => x.Id == request.ItemId);
             if (request != null && item != null && item.Quantity > this.Parameter.Quantity) 
             {
                 request.Status = this.Parameter.Status;
@@ -16,7 +16,7 @@ namespace TMAWarehouse.DataAccess.CQRS.Commands
             }
             
             await context.SaveChangesAsync();
-            return this.Parameter;
+            return request;
         }
     }
 }
